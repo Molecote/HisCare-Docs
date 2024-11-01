@@ -1,0 +1,19 @@
+title Registro de Dados pelo Paciente
+
+participant Usuário
+participant FrontEnd
+participant API
+participant BFF
+participant Azure Function
+participant Banco SQL
+
+Usuário->FrontEnd: preenche dados a serem registrados 
+FrontEnd->API: Chama API
+API->BFF: Faz Requisição de registro de dados
+BFF->Azure Function: Faz Requisição Post
+Azure Function->Banco SQL: Cadastra dados
+Banco SQL->Azure Function: Retorna Mensagem de Sucesso
+Azure Function-> BFF: Retorna Mensagem de Sucesso
+BFF->API: Agrupa respostas das API
+API->FrontEnd:Retorna Resposta Agrupadas
+FrontEnd->Usuário: Retorna Mensagem de Sucesso
