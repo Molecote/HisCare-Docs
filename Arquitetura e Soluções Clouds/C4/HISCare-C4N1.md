@@ -1,5 +1,6 @@
-C4Context
-    title Diagrama de Container do HISCare
+```mermaid
+      C4Context
+    title Diagrama de Contexto do HISCare
 
     Enterprise_Boundary(b0, "HISCare"){
 
@@ -29,3 +30,5 @@ C4Context
     UpdateRelStyle(medico, hiscare, $offsetY="0", $offsetX="50")
     UpdateRelStyle("hiscare", "email", $offsetY="-50", $offsetX="-85")
     UpdateRelStyle("email", "paciente", $offsetY="0", $offsetX="45")
+
+```

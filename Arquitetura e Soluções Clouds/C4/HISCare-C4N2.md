@@ -1,4 +1,5 @@
-C4Container
+```mermaid
+   C4Container
     title Diagrama de Container do HISCare
 
     Enterprise_Boundary(b0, "HISCare"){
@@ -34,3 +35,5 @@ C4Container
     UpdateRelStyle("api", "email", $offsetY="-60", $offsetX="-85")
     UpdateRelStyle("email", "medico", $offsetY="80", $offsetX="5")
     UpdateRelStyle("email", "paciente", $offsetY="280", $offsetX="50")
+
+   ```
