@@ -37,7 +37,42 @@ Atualmente cuidar da saúde é cada vez mais necessário devido ao ritmo acelera
 
 # **3\.**  **Contexto**
 
-####  **3.1 Ambiente do Sistema:**
+####  **3.1.1 Diagrama de Contexto
+ ```mermaid
+      C4Context
+    title Diagrama de Contexto do HISCare
+
+    Enterprise_Boundary(b0, "HISCare"){
+
+        System_Boundary(b1, "Usuários"){
+            Person(paciente, "Paciente", "Registra Informações de Saúde e entra em contato com o médico")
+            Person(medico, "Médico", "Visualiza seus pacientes")
+        }
+        System_Boundary(b2, "Sistema Interno") {
+            System(hiscare,"HISCare", "Sistema de gerenciamento de informações de pacientes,<br> agendamentos, prontuários eletrônicos.")
+        }
+
+        System_Boundary(b3, "Sistena Externo"){
+            System_Ext(auth, "Serviço de Autenticação", "Plataformas como Facebook ou Google <br/> que fornecem login social")
+            System_Ext(email, "Sistema de Email", "Envia lembretes aos pacientes <br> e notifica médico e paciente sobre consultuas futuras")
+        }
+    }  
+
+    Rel(paciente, hiscare, "Registra Dados <br> e Marca Consultas")
+    Rel(medico, hiscare, "Consulta dados <br> Requisita Exames")
+    Rel(hiscare, auth, "Autentica Usuários")
+    Rel(hiscare, email, "Manda Email <br>Usando")
+    Rel(email,paciente,"Manda email para")
+    Rel(email,medico,"Manda email para")
+
+    UpdateLayoutConfig($c4ShapeInRow="8", $c4BoundaryInRow="1")
+    UpdateRelStyle(paciente, hiscare, $offsetY="-10", $offsetX="-110")
+    UpdateRelStyle(medico, hiscare, $offsetY="0", $offsetX="50")
+    UpdateRelStyle("hiscare", "email", $offsetY="-50", $offsetX="-85")
+    UpdateRelStyle("email", "paciente", $offsetY="0", $offsetX="45")
+
+  ```
+####  **3.1.2 Ambiente do Sistema:**
 
 O HISCare é um sistema HIS (Hospital Information System), permitindo o gerenciamento de informações de pacientes, agendamentos, prontuários eletrônicos. Nos prontuários eletrônicos devem estar presentes as seguintes informações: contabilizar calorias e nutrientes ingeridos durante suas refeições, manter registro de litros de água consumidos, manter relatórios de atividades executadas e horas de sono possibilitando que seu médico tenha acesso aos dados inseridos em tempo real criando um ambiente compartilhado. Automatiza diversas funções de um hospital, contribuindo para um atendimento mais eficiente e seguro aos pacientes.
 
@@ -58,7 +93,76 @@ Na aplicação HISCare, temos algumas entidades fundamentais para o funcionament
 Para o desenvolvimento do sistema usaremos o Node.JS e Azure Functions. Já para o banco de dados usaremos o Mongodb Atlas (não relacional) e Microsoft SQL Server (relacional), juntos serão responsáveis por realizar as principais funções do sistema.
 
 # **5\. Visão de Construção**
+## 5.1 Diagrama de Container - Aplicação
+  ```mermaid
+   C4Container
+    title Diagrama de Container do HISCare
 
+    Enterprise_Boundary(b0, "HISCare"){
+
+        System_Boundary(b1, "Usuários"){
+            Person(paciente, "Paciente", "Registra Informações de Saúde e entra em contato com o médico")
+            Person(medico, "Médico", "Visualiza seus pacientes")
+        }
+
+        System_Boundary(b2, "Sistema Interno") {
+            Container(web_app, "Aplicação Web", "Node.JS, React", "Interface web para pacientes e médicos")
+            Container(api, "API", "Node.js, Express", "API RESTful para comunicação entre front-end e back-end")
+            Container(db, "Banco de Dados", "PostgreSQL", "Armazena informações de pacientes, agendamentos e prontuários")
+        }
+
+        System_Boundary(b3, "Sistena Externo"){
+            System_Ext(auth, "Serviço de Autenticação", "Plataformas como Facebook ou Google <br/> que fornecem login social")
+            System_Ext(email, "Sistema de Email", "Envia lembretes aos pacientes <br> e notifica médico e paciente sobre consultuas futuras")
+        }
+    }  
+
+    Rel(paciente, web_app, "Usa", "HTTPS")
+    Rel(medico, web_app, "Usa", "HTTPS")
+    Rel(web_app, api, "Faz requisições para", "HTTPS")
+    Rel(api, db, "", "SQL")
+    Rel(api, auth, "", "HTTPS")
+    Rel(api, email, "Manda Email <br>Usando")
+    Rel(email,paciente,"Manda email para")
+    Rel(email,medico,"Manda email para")
+
+    UpdateLayoutConfig($c4ShapeInRow="8", $c4BoundaryInRow="1")
+    UpdateRelStyle("web_app", "api", $offsetY="35", $offsetX="-50")
+    UpdateRelStyle("api", "email", $offsetY="-60", $offsetX="-85")
+    UpdateRelStyle("email", "medico", $offsetY="80", $offsetX="5")
+    UpdateRelStyle("email", "paciente", $offsetY="280", $offsetX="50")
+
+   ```
+# 5.2 Diagrama de Componentes - 
+ ```mermaid
+   C4Component
+   title Diagrama de Componentes do HISCare
+
+   Container(mobileApp, "Aplicativo Mobile")
+   Container(aplicacaoWeb, "Página Web")
+
+   Boundary(b0, "Backend") {
+      Component(sistemaPontuario, "Controlador de Login", "Responsável por lidar com os pedidos de conexões ao sistema.")
+      Component(apiInforma, "Controlador de Dados das contas", "Disponibiliza os dados a serem usados na aplicação")
+      Component(apiNoti, "Componente de Notificações", "Envia notificações para o usuário")
+      Component(apiSeguranca, "Componente de Segurança", "Disponibiliza as funcionalidades relacionadas a login, trocar senha, etc.")
+      Component(sistemaCalendario, "APIConsultas", "Um sistema que armazena todas as consultas realizadas e agendadas.")
+   }
+   Boundary(b1, "Bancos de Dados") {
+      ComponentDb(SystemE, "Banco de Dados dos Pacientes", "MongoDB", "Armazena os dados de todos os pacientes que frequentam o Hospital.")
+      ComponentDb(SystemC, "Banco de Dados dos Médicos", "MSQL Server", "Armazena os dados de todos os atuais e ex-funcionários do Hospital.")
+   }
+   Rel(aplicacaoWeb, sistemaPontuario, "Chama API")
+   Rel(mobileApp, sistemaPontuario, "Chama API")
+   Rel(aplicacaoWeb, sistemaCalendario, "Chama API")
+   Rel(mobileApp, sistemaCalendario, "Chama API")
+   Rel(aplicacaoWeb, apiInforma, "Chama API")
+   Rel(mobileApp, apiInforma, "Chama API")
+   Rel(sistemaPontuario, apiSeguranca, "Utiliza")
+   Rel(sistemaCalendario, apiNoti, "Utiliza")
+   Rel(apiSeguranca, SystemC, "Lê/Escreve")
+   Rel(apiInforma, SystemE, "Lê/Escreve")
+   ```
 
 # **6\. Visão de Tempo de Execução**
 ##  6.1\. Registro de Dados de Paciente 
@@ -355,7 +459,7 @@ O HISCare lida com dados pessoais sensíveis (como registros médicos), estando 
 
 # 
 
-# **C4**
+### **C4 (Está nos tópicos do Arc42 mas deixamos aqui para melhor visibilidade)**
 
 1. Nível 1  
      ```mermaid
