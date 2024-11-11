@@ -298,12 +298,37 @@ O HISCare lida com dados pessoais sensíveis (como registros médicos), estando 
 
 2. ## Código-fonte do back-end no GitHub
       #### a. Microserviço no GitHub
-      ![IMagem do Microserviço no GitHub](https://github.com/Molecote/HisCare-Docs/blob/main/Imagens/MicroServiceGithub.png)
+      ![Imagem do Microserviço no GitHub](https://github.com/Molecote/HisCare-Docs/blob/main/Imagens/MicroServiceGithub.png)
       #### b. Azure Functions no GitHub  
-      ![IMagem do Azure Functions no GitHub](https://github.com/Molecote/HisCare-Docs/blob/main/Imagens/AzureFuncGitHub.png)
+      ![Imagem do Azure Functions no GitHub](https://github.com/Molecote/HisCare-Docs/blob/main/Imagens/AzureFuncGitHub.png)
 
-      ![IMagem do Azure Functions no GitHub](https://github.com/Molecote/HisCare-Docs/blob/main/Imagens/AzureFuncGitHub2.png)
+      ![Imagem do Azure Functions no GitHub](https://github.com/Molecote/HisCare-Docs/blob/main/Imagens/AzureFuncGitHub2.png)
    
+3. ## Publisher de evento no Microserviço
+    ![Imagem do Código do Publisher](https://github.com/Molecote/HisCare-Docs/blob/main/Imagens/PublisherMicroSevi%C3%A7o.jpg)
+
+4. ## Subscriber de Evento na Function
+    ![Imagem do Código da Function](https://github.com/Molecote/HisCare-Docs/blob/main/Imagens/SubscriberFunctionPT2.jpg)
+
+    ![Imagem do Código da Function](https://github.com/Molecote/HisCare-Docs/blob/main/Imagens/PublisherMicroSevi%C3%A7o.jpg)
+5. ## Mensagem na fila no Azure Service Bus
+    ![Imagem da Mensagem no Azure](https://github.com/Molecote/HisCare-Docs/blob/main/Imagens/MSGFIlaServiceBus.jpg)
+    
+6. ## Requisição de publish no Postman 
+    ![Imagem da Requisição](https://github.com/Molecote/HisCare-Docs/blob/main/Imagens/Requisi%C3%A7%C3%A3oPublishPostman.jpg)
+
+7. ## Request Post API Microserviço
+    ![Imagem da Request Post API - Microserviço](https://github.com/Molecote/HisCare-Docs/blob/main/Imagens/RequestPostAPIMicroServico.jpg)
+
+8. ## Post API do Microserviço no Banco de Dados
+    ![Imagem do Banco de Dados - MS](https://github.com/Molecote/HisCare-Docs/blob/main/Imagens/PostAPIMSnoBancoDeDados.jpg)
+
+9. ## Request Post API na Function
+    ![Imagem da Request POST API - Function](https://github.com/Molecote/HisCare-Docs/blob/main/Imagens/RequestPostAPIFunction.jpg)
+
+10. ## Post API da Function no Banco de dados
+    ![Imagem do Banco de Dados - Function](https://github.com/Molecote/HisCare-Docs/blob/main/Imagens/PostAPIFunctionBancoDeDados.jpg)
+
 
 # 
 
