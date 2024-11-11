@@ -59,12 +59,35 @@ Para o desenvolvimento do sistema usaremos o Node.JS e Azure Functions. Já para
 
 # **5\. Visão de Construção**
 
-# **6\. Visão de Tempo de Execução**
 
+# **6\. Visão de Tempo de Execução**
+##  6.1\. Registro de Dados de Paciente 
+```mermaid
+sequenceDiagram
+title Registro de Dados pelo Paciente
+
+participant Usuário
+participant FrontEnd
+participant API
+participant BFF
+participant Azure Function
+participant Banco SQL
+
+Usuário->FrontEnd: preenche dados a serem registrados 
+FrontEnd->API: Chama API
+API->BFF: Faz Requisição de registro de dados
+BFF->Azure Function: Faz Requisição Post
+Azure Function->Banco SQL: Cadastra dados
+Banco SQL->Azure Function: Retorna Mensagem de Sucesso
+Azure Function-> BFF: Retorna Mensagem de Sucesso
+BFF->API: Agrupa respostas das API
+API->FrontEnd:Retorna Resposta Agrupadas
+FrontEnd->Usuário: Retorna Mensagem de Sucesso
+```
 # **7\. Visão de Implementação**
 
 Backend utilizando Node.js e Banco de Dados MongoDB, com imagem do container no Azure Container Apps para Gerenciamento dos usuários pacientes, enquanto os usuários médicos serão gerenciados com uso de C\# e Azure Functions e Banco de Dados Azure SQL, ambos implantados no portal Azure.  
-**8\. Conceitos**
+# ** 8\. Conceitos**
 
 #### **8.1 Diagrama Entidade-Relacionamento**
 
