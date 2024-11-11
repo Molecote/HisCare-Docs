@@ -294,9 +294,15 @@ O HISCare lida com dados pessoais sensíveis (como registros médicos), estando 
 
 1. ## Imagem no DockerHub e código rodando no Docker
 ![Imagem do DockerHub](https://github.com/Molecote/HisCare-Docs/blob/main/Imagens/DockerHub.png)
- 
-2. ## Código-fonte do back-end no GitHub
+![Código em Execução no Docker](https://github.com/Molecote/HisCare-Docs/blob/main/Imagens/CodExecDocker.png)
 
+2. ## Código-fonte do back-end no GitHub
+      #### a. Microserviço no GitHub
+      ![IMagem do Microserviço no GitHub](https://github.com/Molecote/HisCare-Docs/blob/main/Imagens/MicroServiceGithub.png)
+      #### b. Azure Functions no GitHub  
+      ![IMagem do Azure Functions no GitHub](https://github.com/Molecote/HisCare-Docs/blob/main/Imagens/AzureFuncGitHub.png)
+
+      ![IMagem do Azure Functions no GitHub](https://github.com/Molecote/HisCare-Docs/blob/main/Imagens/AzureFuncGitHub2.png)
    
 
 # 
