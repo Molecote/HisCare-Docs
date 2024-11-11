@@ -176,13 +176,14 @@ UsuarioMedico --> Prontuario : Acessa
 | Coluna | Tipo de Dado | Descrição |  Restrições |
 | :---- | :---- | :---- | :---- |
 | id | INT | Identificador único do paciente | PRIMARY KEY, IDENTITY(1,1) |
-| nome | VARCHAR(255) | Nome completo do paciente | NOT NULL |
-| email | VARCHAR(255) | Endereço de e-mail do paciente | UNIQUE, NOT NULL |
+| nome | STRING | Nome completo do paciente | NOT NULL |
+| email | STRING | Endereço de e-mail do paciente | UNIQUE, NOT NULL |
 | age | DATE | Data de aniversário do paciente, para calcular a idade |  |
 | sexo | STRING | Gênero do paciente  |  |
 | altura | NUMBER | Altura do paciente  |  |
 | peso | NUMBER | Peso do paciente |  |
 | telefone | STRING | Telefone do paciente |  |
+| Crm_Medico | STRING | Medico do Paciente  |  |
 
 **UsuarioMedico**
 
@@ -196,6 +197,7 @@ UsuarioMedico --> Prontuario : Acessa
 | birthDate | DATE | Data de nascimento do médico | NOT NULL |
 | sexo  | VARCHAR(255) | Gênero do médico |  |
 | endereco | VARCHAR(255) | Endereço residencial do médico |  |
+| modificado | DATE | Ultima vez que um adicionado como médico de um paciente|  |
 
 **Prontuario**
 
